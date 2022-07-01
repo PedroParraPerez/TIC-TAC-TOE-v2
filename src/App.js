@@ -1,25 +1,50 @@
-import logo from './logo.svg';
+import React, {useState} from "react";
 import './App.css';
+import AlertTraps from "./components/alertTraps.js"
 
-function App() {
+const App = () => {
+  const[board, setBoard] =useState( [
+                                      [null,null,null],
+                                      [null,null,null],
+                                      [null,null,null],
+                                    ])
+ 
+  const [turn, setTurn] = useState("X")
+
+
+  const changeTurn = () => {turn === "X" ? setTurn("O") : setTurn("X")}
+  
+  const assignSquaredValue = (row, column) => {
+    checkWinnerRows()
+    if(board[row][column] === null){
+      board[row][column] = turn;
+      changeTurn()
+    }else{
+      alert("No te pases de listo")
+    }
+
+  }
+  const checkWinnerRows = () => {
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+   <table className="board">
+    <AlertTraps />
+					<tbody>
+						{board.map((row, i) => (
+							<tr key={i}>
+								{row.map((column, j) => (
+									<td  key={j}>
+										<div onClick={()=>{assignSquaredValue(i,j)}} className="square">{column}</div>
+									</td>
+								))}
+							</tr>
+						))}
+					</tbody>
+				</table>
+    </>
+  )
 }
 
 export default App;
