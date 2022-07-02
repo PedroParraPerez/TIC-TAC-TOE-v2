@@ -12,6 +12,7 @@ const App = () => {
   const [turn, setTurn] = useState("X");
   const [count, setCount] = useState({ X: 0, O: 0 });
   const [canplay, setCanplay] = useState(true);
+  const [rotatewinner, setRotatewinner] = useState({ X: false, O: false });
 
   // Change turn by clicking
   const changeTurn = () => {
@@ -42,7 +43,12 @@ const App = () => {
           (arr[i] === "O" && arr[i + 1] === "O" && arr[i + 2] === "O")
         ) {
           matchCounter();
-          alert(`haaaaa ganado ${turn}`);
+          // alert(`haaaaa ganado ${turn}`);
+          if (turn === "X") {
+            setRotatewinner({ X: true, O: false });
+          } else {
+            setRotatewinner({ X: false, O: true });
+          }
         }
       }
     }
@@ -65,7 +71,12 @@ const App = () => {
       diagonalUno[0] !== undefined
     ) {
       matchCounter();
-      alert(`ha ganado ${turn}`);
+      // alert(`ha ganado ${turn}`);
+      if (turn === "X") {
+        setRotatewinner({ X: true, O: false });
+      } else {
+        setRotatewinner({ X: false, O: true });
+      }
     }
   };
   // Execution of all functions except assignSquareValue. This funct and assign excuse always when i clicked one square
@@ -90,13 +101,22 @@ const App = () => {
       [null, null, null],
       [null, null, null],
     ]);
+    setRotatewinner({ X: false, O: false });
   };
 
   return (
     <>
       <AlertTraps />
-      <span className="countx X">X: {count.X}</span>
-      <span className="counto O">{count.O} :O</span>
+      <span
+        className={`countx X ${rotatewinner.X === true ? "rotate-center" : ""}`}
+      >
+        X: {count.X}
+      </span>
+      <span
+        className={`counto O ${rotatewinner.O === true ? "rotate-center" : ""}`}
+      >
+        {count.O} :O
+      </span>
       <table className="board">
         <tbody>
           {board.map((row, i) => (
