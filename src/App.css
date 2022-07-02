@@ -109,3 +109,12 @@ body {
   padding-left: 5rem;
   
 }
+.refresh{
+  display: flex;
+  margin: auto;
+  margin-top: 1rem;
+  width: 16rem;
+  height: 3rem;
+  font-size:1.4rem;
+  cursor: pointer;
+}

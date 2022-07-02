@@ -11,14 +11,8 @@ const App = () => {
   ]);
   const [turn, setTurn] = useState("X");
   const [count, setCount] = useState({ X: 0, O: 0 });
+  const [canplay, setCanplay] = useState(true);
 
-  // Rotate matrix for checkWinner in columns
-  const rotateMatrix = () => {
-    let matrixRotate = board[0].map((val, index) =>
-      board.map((row) => row[index]).reverse()
-    );
-    return matrixRotate;
-  };
   // Change turn by clicking
   const changeTurn = () => {
     turn === "X" ? setTurn("O") : setTurn("X");
@@ -31,15 +25,12 @@ const App = () => {
       alert("Ese espacio no esta vacio");
     }
   };
-  // Counter of winners to all matchs
-  const matchCounter = () => {
-    alert(`ha ganado ${turn}`);
-    turn === "X" ? (count["X"] += 1) : (count["O"] += 1);
-    setBoard([
-      [null, null, null],
-      [null, null, null],
-      [null, null, null],
-    ]);
+  // Rotate matrix for checkWinner in columns
+  const rotateMatrix = () => {
+    let matrixRotate = board[0].map((val, index) =>
+      board.map((row) => row[index]).reverse()
+    );
+    return matrixRotate;
   };
   // Check Winner for line in horizontally for matrix and RotateMatrix
   const checkWinnerInLine = (typeBoard) => {
@@ -51,6 +42,7 @@ const App = () => {
           (arr[i] === "O" && arr[i + 1] === "O" && arr[i + 2] === "O")
         ) {
           matchCounter();
+          alert(`haaaaa ganado ${turn}`);
         }
       }
     }
@@ -73,9 +65,9 @@ const App = () => {
       diagonalUno[0] !== undefined
     ) {
       matchCounter();
+      alert(`ha ganado ${turn}`);
     }
   };
-
   // Execution of all functions except assignSquareValue. This funct and assign excuse always when i clicked one square
   const allcheckWinnersAndChangeTurn = (row, column) => {
     checkWinnerInLine(board);
@@ -83,6 +75,21 @@ const App = () => {
     checkWinnerDiagonal(board);
     checkWinnerDiagonal(rotateMatrix());
     changeTurn();
+  };
+  // Counter of winners to all matchs
+  const matchCounter = () => {
+    turn === "X" ? (count["X"] += 1) : (count["O"] += 1);
+
+    setCanplay(false);
+  };
+  // Refresh match
+  const refreshMatch = () => {
+    setCanplay(true);
+    setBoard([
+      [null, null, null],
+      [null, null, null],
+      [null, null, null],
+    ]);
   };
 
   return (
@@ -98,8 +105,10 @@ const App = () => {
                 <td key={j}>
                   <p
                     onClick={() => {
-                      assignSquaredValue(i, j);
-                      allcheckWinnersAndChangeTurn();
+                      if (canplay === true) {
+                        assignSquaredValue(i, j);
+                        allcheckWinnersAndChangeTurn();
+                      }
                     }}
                     className={`square ${column === "X" ? "X" : "O"}`}
                   >
@@ -111,6 +120,12 @@ const App = () => {
           ))}
         </tbody>
       </table>
+      <button
+        className={`refresh square ${turn === "X" ? "X" : "O"}`}
+        onClick={refreshMatch}
+      >
+        Comenzar nueva partida
+      </button>
     </>
   );
 };
