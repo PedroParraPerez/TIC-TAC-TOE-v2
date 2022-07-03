@@ -67,6 +67,11 @@ const App = () => {
         }
       }
     }
+    const everyX = (value) => value === "X";
+    const everyO = (value) => value === "O";
+    diagonalUno.every(everyX);
+    diagonalUno.every(everyO);
+
     if (
       diagonalUno[0] === diagonalUno[1] &&
       diagonalUno[0] === diagonalUno[2] &&
