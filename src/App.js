@@ -5,7 +5,7 @@ import Board from "./components/board.jsx";
 import Counter from "./components/counter";
 
 const App = () => {
-  // USESTATE THAT I NEED
+  // USESTATE PLACE
   const [board, setBoard] = useState([
     [null, null, null],
     [null, null, null],
@@ -58,7 +58,7 @@ const App = () => {
   // Check Winner for diagonal for matrix and RotateMatrix
   const checkWinnerDiagonal = (typeboard) => {
     let Length = typeboard.length;
-    var diagonalUno = [];
+    let diagonalUno = [];
 
     for (let i = 0; i < Length; i++) {
       for (let j = 0; j < Length; j++) {
@@ -82,7 +82,7 @@ const App = () => {
     }
   };
   // Execution of all functions except assignSquareValue. This funct and assign excuse always when i clicked one square
-  const allcheckWinnersAndChangeTurn = (row, column) => {
+  const allcheckWinnersAndChangeTurn = () => {
     checkWinnerInLine(board);
     checkWinnerInLine(rotateMatrix());
     checkWinnerDiagonal(board);
@@ -108,7 +108,19 @@ const App = () => {
 
   return (
     <>
-      <AlertTraps />
+      <AlertTraps />b
+      <button
+        onClick={() => {
+          setBoard([
+            [null, null, null, null],
+            [null, null, null, null],
+            [null, null, null, null],
+            [null, null, null, null],
+          ]);
+        }}
+      >
+        HARD MODE
+      </button>
       <Counter
         rotatewinnerX={rotatewinner.X}
         rotatewinnerO={rotatewinner.O}
@@ -121,7 +133,6 @@ const App = () => {
         assignSquaredValue={assignSquaredValue}
         allcheckWinnersAndChangeTurn={allcheckWinnersAndChangeTurn}
       />
-
       <button
         className={`refresh square ${turn === "X" ? "X" : "O"}`}
         onClick={refreshMatch}
