@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./App.css";
 import AlertTraps from "./components/alertTraps.js";
+import Board from "./components/board.jsx";
+import Counter from "./components/counter";
 
 const App = () => {
   // USESTATE THAT I NEED
@@ -107,39 +109,19 @@ const App = () => {
   return (
     <>
       <AlertTraps />
-      <span
-        className={`countx X ${rotatewinner.X === true ? "rotate-center" : ""}`}
-      >
-        X: {count.X}
-      </span>
-      <span
-        className={`counto O ${rotatewinner.O === true ? "rotate-center" : ""}`}
-      >
-        {count.O} :O
-      </span>
-      <table className="board">
-        <tbody>
-          {board.map((row, i) => (
-            <tr key={i}>
-              {row.map((column, j) => (
-                <td key={j}>
-                  <p
-                    onClick={() => {
-                      if (canplay === true) {
-                        assignSquaredValue(i, j);
-                        allcheckWinnersAndChangeTurn();
-                      }
-                    }}
-                    className={`square ${column === "X" ? "X" : "O"}`}
-                  >
-                    {column}
-                  </p>
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <Counter
+        rotatewinnerX={rotatewinner.X}
+        rotatewinnerO={rotatewinner.O}
+        countX={count.X}
+        countO={count.O}
+      />
+      <Board
+        canplay={canplay}
+        board={board}
+        assignSquaredValue={assignSquaredValue}
+        allcheckWinnersAndChangeTurn={allcheckWinnersAndChangeTurn}
+      />
+
       <button
         className={`refresh square ${turn === "X" ? "X" : "O"}`}
         onClick={refreshMatch}
