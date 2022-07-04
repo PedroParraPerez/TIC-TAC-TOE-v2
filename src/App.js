@@ -11,14 +11,31 @@ const App = () => {
     [null, null, null],
     [null, null, null],
   ]);
-  const [turn, setTurn] = useState("X");
-  const [count, setCount] = useState({ X: 0, O: 0 });
+
+  const [turn, setTurn] = useState("✖");
+  const [count, setCount] = useState({ "✖": 0, "⭕": 0 });
   const [canplay, setCanplay] = useState(true);
-  const [rotatewinner, setRotatewinner] = useState({ X: false, O: false });
+  const [rotatewinner, setRotatewinner] = useState({ "✖": false, "⭕": false });
+  const [controlSizeBoard, setControlSizeBoard] = useState(true);
+
+  const controlSizeBoardfunc = () => {
+    controlSizeBoard === true
+      ? setBoard([
+          [null, null, null],
+          [null, null, null],
+          [null, null, null],
+        ])
+      : setBoard([
+          [null, null, null, null],
+          [null, null, null, null],
+          [null, null, null, null],
+          [null, null, null, null],
+        ]);
+  };
 
   // Change turn by clicking
   const changeTurn = () => {
-    turn === "X" ? setTurn("O") : setTurn("X");
+    turn === "✖" ? setTurn("⭕") : setTurn("✖");
   };
   // Assign values to square and validate the square is empty
   const assignSquaredValue = (row, column) => {
@@ -41,15 +58,15 @@ const App = () => {
     for (let arr of typeBoard) {
       for (let i = 0; i < Length; i++) {
         if (
-          (arr[i] === "X" && arr[i + 1] === "X" && arr[i + 2] === "X") ||
-          (arr[i] === "O" && arr[i + 1] === "O" && arr[i + 2] === "O")
+          (arr[i] === "✖" && arr[i + 1] === "✖" && arr[i + 2] === "✖") ||
+          (arr[i] === "⭕" && arr[i + 1] === "⭕" && arr[i + 2] === "⭕")
         ) {
           matchCounter();
           // alert(`haaaaa ganado ${turn}`);
-          if (turn === "X") {
-            setRotatewinner({ X: true, O: false });
+          if (turn === "✖") {
+            setRotatewinner({ "✖": true, "⭕": false });
           } else {
-            setRotatewinner({ X: false, O: true });
+            setRotatewinner({ "✖": false, "⭕": true });
           }
         }
       }
@@ -67,8 +84,8 @@ const App = () => {
         }
       }
     }
-    const everyX = (value) => value === "X";
-    const everyO = (value) => value === "O";
+    const everyX = (value) => value === "✖";
+    const everyO = (value) => value === "⭕";
     diagonalUno.every(everyX);
     diagonalUno.every(everyO);
 
@@ -79,10 +96,10 @@ const App = () => {
     ) {
       matchCounter();
       // alert(`ha ganado ${turn}`);
-      if (turn === "X") {
-        setRotatewinner({ X: true, O: false });
+      if (turn === "✖") {
+        setRotatewinner({ "✖": true, "⭕": false });
       } else {
-        setRotatewinner({ X: false, O: true });
+        setRotatewinner({ "✖": false, "⭕": true });
       }
     }
   };
@@ -96,41 +113,40 @@ const App = () => {
   };
   // Counter of winners to all matchs
   const matchCounter = () => {
-    turn === "X" ? (count["X"] += 1) : (count["O"] += 1);
+    turn === "✖" ? (count["✖"] += 1) : (count["⭕"] += 1);
 
     setCanplay(false);
   };
   // Refresh match
   const refreshMatch = () => {
     setCanplay(true);
-    setBoard([
-      [null, null, null],
-      [null, null, null],
-      [null, null, null],
-    ]);
-    setRotatewinner({ X: false, O: false });
+    controlSizeBoardfunc();
+    setRotatewinner({ "✖": false, "⭕": false });
   };
 
   return (
     <>
-      <AlertTraps />b
+      <AlertTraps />
       <button
         onClick={() => {
-          setBoard([
-            [null, null, null, null],
-            [null, null, null, null],
-            [null, null, null, null],
-            [null, null, null, null],
-          ]);
+          // setBoard([
+          //   [null, null, null, null],
+          //   [null, null, null, null],
+          //   [null, null, null, null],
+          //   [null, null, null, null],
+          // ]);
+          setControlSizeBoard(!controlSizeBoard);
+
+          controlSizeBoardfunc();
         }}
       >
         HARD MODE
       </button>
       <Counter
-        rotatewinnerX={rotatewinner.X}
-        rotatewinnerO={rotatewinner.O}
-        countX={count.X}
-        countO={count.O}
+        rotatewinnerX={rotatewinner["✖"]}
+        rotatewinnerO={rotatewinner["⭕"]}
+        countX={count["✖"]}
+        countO={count["⭕"]}
       />
       <Board
         canplay={canplay}
@@ -139,7 +155,7 @@ const App = () => {
         allcheckWinnersAndChangeTurn={allcheckWinnersAndChangeTurn}
       />
       <button
-        className={`refresh square ${turn === "X" ? "X" : "O"}`}
+        className={`refresh square ${turn === "✖" ? "✖" : "⭕"}`}
         onClick={refreshMatch}
       >
         Comenzar nueva partida

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
 body{
   padding: 0;
   margin: 0;
@@ -32,7 +33,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 4rem;
+  font-size: 6rem;
 }
 .alert_trap{
   position: absolute;
@@ -47,66 +48,22 @@ body {
   border-radius: 20px;
   display: none;
 }
-.O {
-  font-family: X;
-  color: #426DFB;
-  font-size: 9vw;
-  line-height: 9vw;
-  text-shadow: 0 0 3vw #2356FF;
-}
-.X {
-  font-family: neon;
-  color: #FB4264;
-  font-size: 9vw;
-  line-height: 9vw;
-  text-shadow: 0 0 3vw #F40A35;
-}
-.X {
-  animation: X 1s ease infinite;
-  -moz-animation: X 1s ease infinite;
-  -webkit-animation: X 1s ease infinite;
+.O, .X {
+  font-size: 7rem;
 }
 
-@keyframes X {
-  0%,
-  100% {
-    text-shadow: 0 0 1vw #FA1C16, 0 0 3vw #FA1C16, 0 0 10vw #FA1C16, 0 0 10vw #FA1C16, 0 0 .4vw #FED128, .5vw .5vw .1vw #806914;
-    color: #FED128;
-  }
-  50% {
-    text-shadow: 0 0 .5vw #800E0B, 0 0 1.5vw #800E0B, 0 0 5vw #800E0B, 0 0 5vw #800E0B, 0 0 .2vw #800E0B, .5vw .5vw .1vw #40340A;
-    color: #806914;
-  }
-}
-
-.O {
-  animation: O 2s linear infinite;
-  -moz-animation: O 2s linear infinite;
-  -webkit-animation: O 2s linear infinite;
-  -o-animation: O 2s linear infinite;
-}
-
-@keyframes O {
-  0%,
-  100% {
-    text-shadow: 0 0 1vw #1041FF, 0 0 3vw #1041FF, 0 0 10vw #1041FF, 0 0 10vw #1041FF, 0 0 .4vw #8BFDFE, .5vw .5vw .1vw #147280;
-    color: #28D7FE;
-  }
-  50% {
-    text-shadow: 0 0 .5vw #082180, 0 0 1.5vw #082180, 0 0 5vw #082180, 0 0 5vw #082180, 0 0 .2vw #082180, .5vw .5vw .1vw #0A3940;
-    color: #146C80;
-  }
-}
 .counto{
   position: absolute;
   top: 50%;
   right: 0%;
   padding-right: 5rem;
+  font-family: 'Lilita One', cursive;
 }
 .countx{
   position: absolute;
   top: 50%;
   padding-left: 5rem;
+  font-family: 'Lilita One', cursive;
   
 }
 .refresh{
@@ -115,8 +72,9 @@ body {
   margin-top: 1rem;
   width: 16rem;
   height: 3rem;
-  font-size:1.4rem;
+  font-size:1.3rem;
   cursor: pointer;
+  color: white;
 }
 .rotate-center {
 	-webkit-animation: rotate-center 0.6s ease-in-out both;

@@ -6,11 +6,11 @@ const Counter = (props) => {
     <>
      <span
         className={`countx X ${props.rotatewinnerX === true ? "rotate-center" : ""}`}>
-        X: {props.countX}
+        ✖: {props.countX}
       </span>
       <span
         className={`counto O ${props.rotatewinnerO === true ? "rotate-center" : ""}`} >
-        {props.countO} :O
+        <span>{props.countO}</span> : <span>⭕</span>
       </span>
     </> );
 }

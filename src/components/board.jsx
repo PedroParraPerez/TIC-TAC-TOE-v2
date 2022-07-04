@@ -16,7 +16,7 @@ const Board = (props) => {
                         props.allcheckWinnersAndChangeTurn();
                       }
                     }}
-                    className={`square ${column === "X" ? "X" : "O"}`}
+                    className={`square ${column === "✖" ? "✖" : "⭕"}`}
                   >
                     {column}
                   </p>
