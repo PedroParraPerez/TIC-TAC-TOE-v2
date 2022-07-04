@@ -18,7 +18,9 @@ const App = () => {
   const [rotatewinner, setRotatewinner] = useState({ "✖": false, "⭕": false });
   const [controlSizeBoard, setControlSizeBoard] = useState(true);
 
+  //
   const controlSizeBoardfunc = () => {
+    setControlSizeBoard(!controlSizeBoard);
     controlSizeBoard === true
       ? setBoard([
           [null, null, null],
@@ -32,7 +34,6 @@ const App = () => {
           [null, null, null, null],
         ]);
   };
-
   // Change turn by clicking
   const changeTurn = () => {
     turn === "✖" ? setTurn("⭕") : setTurn("✖");
@@ -120,7 +121,18 @@ const App = () => {
   // Refresh match
   const refreshMatch = () => {
     setCanplay(true);
-    controlSizeBoardfunc();
+    controlSizeBoard === true
+      ? setBoard([
+          [null, null, null],
+          [null, null, null],
+          [null, null, null],
+        ])
+      : setBoard([
+          [null, null, null, null],
+          [null, null, null, null],
+          [null, null, null, null],
+          [null, null, null, null],
+        ]);
     setRotatewinner({ "✖": false, "⭕": false });
   };
 
@@ -129,14 +141,6 @@ const App = () => {
       <AlertTraps />
       <button
         onClick={() => {
-          // setBoard([
-          //   [null, null, null, null],
-          //   [null, null, null, null],
-          //   [null, null, null, null],
-          //   [null, null, null, null],
-          // ]);
-          setControlSizeBoard(!controlSizeBoard);
-
           controlSizeBoardfunc();
         }}
       >
