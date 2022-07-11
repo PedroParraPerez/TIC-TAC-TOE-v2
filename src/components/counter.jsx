@@ -5,12 +5,12 @@ const Counter = (props) => {
     return ( 
     <>
      <span
-        className={`countx X ${props.rotatewinnerX === true ? "rotate-center" : ""}`}>
-        ✖: {props.countX}
+        className={`countx X`}>
+        <span className={`a ${props.rotatewinnerX === true ? "rotate-center" : ""}`}>✖</span>: <span className={`${props.rotatewinnerX === true ? "rotate-center" : ""}`}>{props.countX}</span>
       </span>
       <span
-        className={`counto O ${props.rotatewinnerO === true ? "rotate-center" : ""}`} >
-        <span>{props.countO}</span> : <span>⭕</span>
+        className={`counto O`} >
+        <span className={`a ${props.rotatewinnerO === true ? "rotate-center" : ""}`}>{props.countO}</span> : <span className={`${props.rotatewinnerO === true ? "rotate-center" : ""}`}>⭕</span>
       </span>
     </> );
 }

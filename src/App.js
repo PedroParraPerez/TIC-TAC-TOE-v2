@@ -11,7 +11,6 @@ const App = () => {
     [null, null, null],
     [null, null, null],
   ]);
-
   const [turn, setTurn] = useState("✖");
   const [count, setCount] = useState({ "✖": 0, "⭕": 0 });
   const [canplay, setCanplay] = useState(true);
